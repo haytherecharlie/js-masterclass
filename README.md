@@ -1,6 +1,6 @@
 # Modern JS MasterClass
 
-![MJS Logo](https://raw.githubusercontent.com/charleshay/modern_js_masterclass/main/logo.png)
+![MJS Logo](https://raw.githubusercontent.com/charleshay/modern_js_masterclass/main/images/logo.png)
 
 Hello there! Welcome to **Modern JS MasterClass**, the course for develpers wanting to learn modern JavaScript.
 
