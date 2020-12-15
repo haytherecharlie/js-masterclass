@@ -1,4 +1,4 @@
-![MJS Logo](https://raw.githubusercontent.com/charleshay/modern_js_masterclass/main/images/logo-small.png)
+![MJS Logo](https://raw.githubusercontent.com/charliehay/modern_js_masterclass/main/images/logo-small.png)
 
 ---
 
@@ -87,6 +87,6 @@ How intensive the alorithm is on system resources.
 
 ## <br/>
 
-© 2020 Charles Hay
+© 2020 Charlie Hay
 
-Under the Canadian Copyright Act, individuals may not copy substantial parts of copyright protected course, code or audio files without the permission of the Charles Hay.
+Under the Canadian Copyright Act, individuals may not copy substantial parts of copyright protected course, code or audio files without the permission of the Charlie Hay.
