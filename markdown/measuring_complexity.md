@@ -1,5 +1,6 @@
-![MJS Logo](https://raw.githubusercontent.com/charliehay/modern_js_masterclass/main/images/logo-small.png)
-
+<center>
+<img src="https://raw.githubusercontent.com/charliehay/js_masterclass/main/images/logo.png" height="50" alt="Charlie Hay\'s JS MasterClass" />
+</center>
 ---
 
 # Measuring Complexity:

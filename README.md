@@ -1,17 +1,32 @@
-# JS MasterClass
+<center>
+<img src="https://raw.githubusercontent.com/charliehay/js_masterclass/main/images/logo.png" height="150" alt="Charlie Hay\'s JS MasterClass" />
+</center>
 
-![MJS Logo](https://raw.githubusercontent.com/charliehay/modern_js_masterclass/main/images/logo.png)
+## Introduction:
 
-Hello there! Welcome to **JS MasterClass** by Charlie Hay! This course is for developers wanting to learn how to write JavaScript in a masterful manner. We focus heavily on Data Structures and Algorithms, best practices and everything you need to know to pass a coding interview with a top-tier company.
+Welcome to **JS MasterClass**! I'm Charlie Hay a Tech Lead at a large telecom company here in Canada. On a daily basis I mentor developers in their journey to becoming world-class Javascript aficiandos. 
 
-Let's get started.
+If you're looking for a course that will help you to crush that technical interview or just sharpen your skills for the next level of your career, as long as you have a basic understanding of Javascript, this course is for you. We'll tackle the core Computer Science fundimentals like Big O notation and programming paradigms all from the perspective of a JS developer. 
 
-## Course Outline
+Best of all this course is 100% free. The videos, the coding challenges, everything - so settle in with a warm cup of coffee and let's get coding.
 
-**Introduction:** In this video, we'll walk through the modern landscape of JS and quickly run down the topics we'll cover in this course. [Watch on YouTube](https://www.youtube.com/channel/UCgVS4L8m2X_99auvDgUbNGQ?view_as=subscriber).
+`- Charlie`
+
+## Prerequisites:
+* A good understanding of how [functions](https://dmitripavlutin.com/6-ways-to-declare-javascript-functions/) are written in JS.
+* A solid ability to write [looping and iteration statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration)  in JS.
+* Knowledge of [JS operators](https://www.w3schools.com/js/js_operators.asp) for arithmitic and assignments.
+* General problem solving / math ability.
+
+## Course Topics:
+
+|  #  | Topic                                                  |
+|:---:|--------------------------------------------------------|
+|01   | Evaluating Algorithmic Efficiency Using Big O Notation |
+
 
 ## <br/>
 
-© 2020 Charlie Hay
+© 2021 Charlie Hay
 
 Under the Canadian Copyright Act, individuals may not copy substantial parts of copyright protected course, code or audio files without the permission of the Charlie Hay.
