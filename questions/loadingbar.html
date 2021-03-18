@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    .container {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      border: 1px solid #000;
+    }
+    #loading-bars-container {
+      overflow: scroll;
+      display: flex;
+      flex-direction: column;
+    }
+    #loading-bar-wrapper {
+      width: 300px;
+      height: 50px;
+      border: 1px solid #000;
+    }
+    #loading-bar-fill {
+      height: 100%;
+      width: 0%;
+      background-color: green;
+    }
+    #start-btn-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #start-btn {
+      height: 50px;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="loading-bars-container"></div>
+  <div class="container" id="start-btn-container">
+    <button id="start-btn">Start</button>
+  </div>
+</body>
+<script>
+  let clickCount = 0
+  const loadingBarsContainer = document.querySelector('#loading-bars-container')
+  const startBtn = document.querySelector('#start-btn')
+
+  function startLoading(id) {
+    let loadingPercent = 0
+    const loadingFillBar = document.querySelector(`#${id}`)
+    const timer = setInterval(() => {
+      loadingFillBar.style.width = `${++loadingPercent}px`
+      if (loadingPercent >= 300)clearInterval(timer)
+    }, 10)
+  }
+
+  function createNewLoadingBar(index) {
+    const loadingBar = document.createElement('div')
+    loadingBar.style.width = "300px"
+    loadingBar.style.height = "50px"
+    loadingBar.style.border = "1px solid #000"
+    loadingBar.id = `loading-bar-${index}`
+    
+    const loadingFill = document.createElement('div')
+    loadingFill.style.height = "100%"
+    loadingFill.style.width = "0%"
+    loadingFill.style.backgroundColor = 'green'
+    loadingFill.id = `loading-fill-${index}`
+
+    loadingBar.prepend(loadingFill)
+    loadingBarsContainer.prepend(loadingBar)
+    startLoading(loadingFill.id)
+  }
+
+  startBtn.addEventListener('click', () => createNewLoadingBar(++clickCount))
+
+</script>
+</html>
