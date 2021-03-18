@@ -1,11 +1,5 @@
 function throttler(tasks = [], count = 2) {
-  return tasks.filter((task, index) => {
-    if (index >= count) {
-      return true
-    }
-    task()
-    return false
-  })
+  return tasks.filter((task, index) => (index >= count ? true : task()))
 }
 
 let c = console.log
