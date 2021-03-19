@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+  <head>
+    <style>
+    body {
+      height: 100vh;
+    }
+    #draggable {
+      position: absolute;
+      height: 200px;
+      width: 200px;
+      background-color: hotpink;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+    }
+    </style>
+  </head>
+  <body>
+    <div id="draggable"></div>
+  <script>
+    // capture the button
+    const body = document.querySelector('body')
+    const draggable = document.querySelector('#draggable')
+    let hold = null
+
+    // onmousedown -> get mouse coords
+    draggable.addEventListener('mousedown', (e) => {
+      const startX = e.clientX
+      const startY = e.clientY
+
+      hold = setInterval(() => {
+        console.log(startX)
+        console.log(window.scrollLeft())
+      }, 10)
+    })
+
+    body.addEventListener('mouseup', (e) => {
+      console.log("mouseup")
+      clearInterval(hold)
+    })
+
+      // onmove -> calculate diff of coords
+  </script>
+  </body>
+</html>

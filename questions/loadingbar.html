@@ -50,18 +50,27 @@
   const loadingBarsContainer = document.querySelector('#loading-bars-container')
   const startBtn = document.querySelector('#start-btn')
 
-  function startLoading(id) {
+  function startLoading(fillId, barId, secs) {
+    const loadingBarWidth = document.querySelector(`#${barId}`).offsetWidth
+    const loadingFillBar = document.querySelector(`#${fillId}`)
+    const interval = (secs * 1000) * 0.01
+    const step = loadingBarWidth * 0.01
+    const startTime = new Date().getTime()
     let loadingPercent = 0
-    const loadingFillBar = document.querySelector(`#${id}`)
+
     const timer = setInterval(() => {
-      loadingFillBar.style.width = `${++loadingPercent}px`
-      if (loadingPercent >= 300)clearInterval(timer)
-    }, 10)
+      loadingFillBar.style.width = `${loadingPercent += step}px`
+      if (loadingPercent >= (loadingBarWidth - step)) {
+        loadingFillBar.style.width = `${loadingBarWidth}px`
+        console.log(new Date().getTime() - startTime)
+        clearInterval(timer)
+      }
+    }, interval)
   }
 
   function createNewLoadingBar(index) {
     const loadingBar = document.createElement('div')
-    loadingBar.style.width = "300px"
+    loadingBar.style.width = `${(Math.round(Math.random() * 800) + 200)}px`
     loadingBar.style.height = "50px"
     loadingBar.style.border = "1px solid #000"
     loadingBar.id = `loading-bar-${index}`
@@ -74,7 +83,7 @@
 
     loadingBar.prepend(loadingFill)
     loadingBarsContainer.prepend(loadingBar)
-    startLoading(loadingFill.id)
+    startLoading(loadingFill.id, loadingBar.id, 4)
   }
 
   startBtn.addEventListener('click', () => createNewLoadingBar(++clickCount))
