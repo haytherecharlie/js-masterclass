@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+  <body>
+    <span>{{ greeting }}</span>
+
+    <script>
+      const allEls = document.body.getElementsByTagName("*")
+      
+      const vDOM = Object.values(allEls).reduce((acc, val) => {
+        if(val.tagName === 'SCRIPT') return acc
+        
+        const uid = Math.round(Math.random() * 1000000)
+        val.classList.add(uid)
+        return { ...acc, [uid]: val}
+      }, {})
+
+      console.log(vDOM)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="search" placeholder="search for something"></input>
+    <ul id="results"></ul>
+    <script>
+        const $search = document.querySelector('#search')
+        const $results = document.querySelector('#results')
+        const results = ['cat', 'caterpillar', 'cat-o-nine-tails']
+        const searchCache = {}
+        let pendingReq = null
+        let awaitResponse = false
+
+        // Simulate API Call
+        function fetchResults(query) {
+            console.log('fetching from API')
+            return new Promise(res => setTimeout(() => res(results.filter(val => val.startsWith(query))), 0))
+        }
+
+        // Clear Suggestions
+        function clearSuggestions() {
+            clearTimeout(pendingReq)
+            awaitResponse = false
+            $results.innerHTML = ''
+        }
+
+        // Display Suggestions
+        function displaySuggestions(suggestions) {
+            if ($results.innerHTML === '') {
+                suggestions.map((suggestion) => $results.append(createSuggestion(suggestion)))
+            }
+        }
+
+        // Select Suggestion
+        function selectSuggestion(val) {
+            clearSuggestions()
+            $search.value = val
+        }
+
+        // Create Sugggestion
+        function createSuggestion(val) {
+            const listItem = document.createElement('li')
+            listItem.innerHTML = val
+            listItem.addEventListener('click', () => selectSuggestion(val))
+            return listItem
+        }
+
+        // Handle Search Key Down
+        function handleSearchKeyDown() {
+            if (pendingReq) clearSuggestions()
+        }
+
+        // Handle Search Key Up
+        function handleSearchKeyUp() {
+            if ($search.value !== '') {
+                pendingReq = setTimeout(async() => {
+                    awaitResponse = true
+                    const suggestions = searchCache[$search.value] || await fetchResults($search.value)
+                    searchCache[$search.value] = suggestions
+                    if (awaitResponse) displaySuggestions(suggestions)
+                }, 400)
+            }
+        }
+
+        const searchKeyDownListener = $search.addEventListener('keydown', handleSearchKeyDown)
+        const searchKeyUpListener = $search.addEventListener('keyup', handleSearchKeyUp)
+    </script>
+</body>
+
+</html>
