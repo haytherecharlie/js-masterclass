@@ -8,39 +8,49 @@
       position: absolute;
       height: 200px;
       width: 200px;
-      background-color: hotpink;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-
+      background-color: hotpink;
+      border: 1px solid #000;
     }
     </style>
   </head>
   <body>
     <div id="draggable"></div>
   <script>
-    // capture the button
-    const body = document.querySelector('body')
-    const draggable = document.querySelector('#draggable')
-    let hold = null
+    const $body = document.querySelector('body')
+    const $draggable = document.querySelector('#draggable')
+    let [prevX, prevY] = [null, null]
+    let interval = null
 
-    // onmousedown -> get mouse coords
-    draggable.addEventListener('mousedown', (e) => {
-      const startX = e.clientX
-      const startY = e.clientY
+    function onMouseMove(e) {
+      const offsetLeft = $draggable.offsetLeft
+      const offsetTop = $draggable.offsetTop
+      const clientX = e.clientX
+      const clientY = e.clientY
 
-      hold = setInterval(() => {
-        console.log(startX)
-        console.log(window.scrollLeft())
-      }, 10)
+      $body.style.backgroundColor = `rgba(255,0,0, ${1 - (window.innerHeight - clientY) / window.innerHeight})`
+
+      $draggable.style.left = `${offsetLeft + (clientX - prevX)}px`
+      $draggable.style.top = `${offsetTop + (clientY - prevY)}px`
+      prevX = clientX
+      prevY = clientY
+    }
+
+    $draggable.addEventListener('mousedown', (e) => {
+      prevX = e.clientX
+      prevY = e.clientY
+      document.addEventListener('mousemove', onMouseMove)
     })
 
-    body.addEventListener('mouseup', (e) => {
-      console.log("mouseup")
-      clearInterval(hold)
+    document.addEventListener('mouseup', () => {
+      clearInterval(interval)
+      document.removeEventListener('mousemove', onMouseMove)
+      prevX = null
+      prevY = null
     })
 
-      // onmove -> calculate diff of coords
   </script>
   </body>
 </html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .arrow {
+        height: 150px;
+        background-color: lightblue;
+        border: none;
+      }
+      #container {
+        position: relative;
+        height: 350px;
+        width: 350px;
+        overflow: hidden;
+      }
+      #slider {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        height: 150px;
+        width: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="arrow" id="arrow-left"><</button>
+    <div id="container">
+      <div id="slider">
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+      </div>
+    </div>
+    <button class="arrow" id="arrow-right">></button>
+
+    <script>
+      let currPos = 0
+      const imageWidth = 350
+      const $container = document.querySelector("#container")
+      const $arrowLeft = document.querySelector("#arrow-left")
+      const $arrowRight = document.querySelector("#arrow-right")
+      const lastPos = imageWidth * ($container.querySelectorAll("img").length - 1)
+
+      // Add Image Dimensions Dynamically
+      Object.values($container.querySelectorAll("img")).map((img) => {
+        Object.assign(img.style, { height: `${imageWidth}px`, width: `${imageWidth}px` })
+      })
+
+      // Scroll Function
+      function scroll(dir) {
+        if (dir === "left") {
+          currPos = currPos !== 0 ? (currPos -= imageWidth) : lastPos
+        }
+        if (dir === "right") {
+          currPos = currPos !== lastPos ? (currPos += imageWidth) : 0
+        }
+        $container.scrollTo({ top: 0, left: currPos, behavior: "smooth" })
+      }
+
+      // Click Even Listeners
+      $arrowLeft.addEventListener("click", scroll.bind(null, "left"))
+      $arrowRight.addEventListener("click", scroll.bind(null, "right"))
+    </script>
+  </body>
+</html>
