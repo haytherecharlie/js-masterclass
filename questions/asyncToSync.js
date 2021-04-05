@@ -1,18 +1,37 @@
-function asyncFunc(num) {
-    return new Promise((res) => {
-        setTimeout(() => {
-            console.log(`func ${num} complete`)
-            return res()
-        }, 3000)
-    })
-}
+const async = {
+  results: [],
+  series(funcs, callback) {
+    try {
+      _callback = (err, result) => {
+        if (err) callback(err)
+        this.results.push(result)
+      }
 
-async function asyncToSync(funcArr) {
-    while (funcArr.length) {
-        await funcArr[0]()
-        funcArr.splice(0, 1)
+      for (let func of funcs) {
+        func(_callback)
+      }
+
+      callback(null, this.results)
+    } catch (err) {
+      callback(err)
     }
-    console.log("done")
+  },
 }
 
-asyncToSync([asyncFunc.bind(null, 1), asyncFunc.bind(null, 2), asyncFunc.bind(null, 3)])
+async.series(
+  [
+    function (callback) {
+      // do some stuff ...
+      callback(null, "one")
+    },
+    function (callback) {
+      // do some more stuff ...
+      callback(null, "two")
+    },
+  ],
+  // optional callback
+  function (err, results) {
+    // results is now equal to ['one', 'two']
+    console.log(results)
+  }
+)

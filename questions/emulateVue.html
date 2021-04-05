@@ -1,33 +1,27 @@
 <!DOCTYPE html>
   <body>
-    <div id="app">{{ message }} {{ poop }}</div>
+    <div id="app">
+      <p>{{ greeting }} Vue.js!</p>
+      <p>Time to leave, {{ salutation }}</p>
+  </div>
 
     <script>
       class Vue {
-        constructor(component) {
-          this.component = component
-          this.updateDomElement()
-        }
-
-        updateDomElement() {
-          const el = document.querySelector(this.component.el)
-          let innerContent = `${el.innerHTML}`
-          for(let key of Object.keys(this.component.data)) {
-            innerContent = innerContent.replace(`{{ ${key} }}`, this.component.data[key])
-          }
-          el.innerHTML = innerContent
-        }
-
-        injectMessage() {
-          this.el.innerHTML = this.message
+        constructor(obj) {
+          this.el = obj.el
+          this.data = obj.data
+          const element = document.querySelector(this.el)
+          Object.entries(this.data).map(([key, val]) => {
+            element.innerHTML = element.innerHTML.replace(new RegExp(`{{ ${key} }}`, "g"), val)
+          })
         }
       }
 
       var app = new Vue({
         el: '#app',
         data: {
-          message: 'Hello Vue!',
-          poop: 'bye!'
+          greeting: 'Hello,',
+          salutation: 'Goodbye!'
         }
       })
     </script>
