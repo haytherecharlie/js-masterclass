@@ -1,19 +1,10 @@
-function bestRoi(prices) {
-  if (prices.length < 2) return "not enough data"
+var maxProfit = function (prices) {
+  let min = Number.MAX_VALUE
+  let maxProf = 0
 
-  function bestPossibleReturn(buy, subPrices) {
-    return subPrices.reduce((acc, sell) => {
-      if (sell - buy > acc) return sell - buy
-      return acc
-    }, subPrices[0] - buy)
+  for (let price of prices) {
+    if (price < min) min = price
+    else if (price - min > maxProf) maxProf = price - min
   }
-
-  const bestPrices = []
-  for(let i = 0; i < prices.length - 1; i++) {
-    bestPrices.push(bestPossibleReturn(prices[i], prices.slice(i + 1)))
-  }
-
-  return Math.max(...bestPrices)
+  return maxProf
 }
-
-console.log(bestRoi([5, 3, 4, 1]))
