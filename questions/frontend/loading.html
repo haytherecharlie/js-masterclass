@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="loading-container">
+      <div id="loading-bar"></div>
+    </div>
+
+    <script>
+      const loadingContainer = document.querySelector("#loading-container")
+      const loadingBar = document.querySelector("#loading-bar")
+
+      const styleContainer = (() => {
+        loadingContainer.style.width = `400px`
+        loadingContainer.style.height = `50px`
+        loadingContainer.style.border = `1px solid #000`
+      })()
+
+      const styleBar = (() => {
+        loadingBar.style.width = `0%`
+        loadingBar.style.height = `100%`
+        loadingBar.style.backgroundColor = `green`
+      })()
+
+      const fillLoadingBar = ((percent = 0) => {
+        const loading = setInterval(() => {
+          console.log(percent)
+          if (percent === 100) clearInterval(loading)
+          loadingBar.style.width = `${percent++}%`
+        }, 3000 / 100)
+      })()
+    </script>
+  </body>
+</html>
