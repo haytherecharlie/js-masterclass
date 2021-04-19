@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="hello world test"></div>
+    <div class="james world cool"></div>
+    <div class="hello world cool poop"></div>
+    <div class="hello world amazing charlie"></div>
+
+    <script>
+      /**
+       * {
+       *   hello: {
+       *     world: {
+       *       test: {}
+       *     }
+       *   },
+       *   james: {}
+       * }
+       */
+      let divs = document.querySelectorAll("div")
+      let map = {}
+
+      divs.forEach((div) => {
+        let classList = div.classList
+
+        const classToMap = function (classList) {
+          if (classList.length === 0) return null
+
+          let currClass = classList[0]
+          classList.remove(currClass)
+          return { [currClass]: classToMap(classList) }
+        }
+
+        let lastClass = classList[0]
+        classList.remove(lastClass)
+        map[lastClass] = classToMap(classList)
+      })
+      console.log(map)
+    </script>
+  </body>
+</html>
