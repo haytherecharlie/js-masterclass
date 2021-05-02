@@ -15,7 +15,6 @@ function mostLivingPeople(people) {
 
   Object.entries(map).map(([date, change]) => {
     living += change
-    
     if(living > max[1]) max = [date, living]
   })
 
